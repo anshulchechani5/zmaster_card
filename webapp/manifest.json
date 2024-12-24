@@ -1,0 +1,185 @@
+{
+    "_version": "1.48.0",
+    "sap.app": {
+        "id": "zmastercard.zmastercard",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.9.5",
+            "toolsId": "ef018dce-52dd-4bc0-b1b6-e74e0d233d8c"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZMASTER_CARD_SERVICE_BIN/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZAUTO_BOM_V2_BIN": {
+                "uri": "/sap/opu/odata/sap/ZAUTO_BOM_V2_BIN",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/ZAUTO_BOM_V2_BIN/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "zmastercard-zmastercard-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "zmastercard",
+                    "action": "Display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.108.14",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "zmastercard.zmastercard.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "ZAUTO_BOM_V2_BIN": {
+                "dataSource": "ZAUTO_BOM_V2_BIN",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "zmastercard.zmastercard.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteView1",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetView1"
+                    ]
+                },
+                {
+                    "name": "carddetails",
+                    "pattern": "carddetails",
+                    "target": [
+                        "carddetails"
+                    ]
+                },
+                {
+                    "name": "masterdata",
+                    "pattern": "masterdata",
+                    "target": [
+                        "masterdata"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetView1": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "View1",
+                    "viewName": "View1"
+                },
+                "carddetails": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "carddetails",
+                    "viewName": "carddetails"
+                },
+                "masterdata": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "masterdata",
+                    "viewName": "masterdata"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "zmastercard.zmastercard.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

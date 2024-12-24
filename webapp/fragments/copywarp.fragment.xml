@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m"  xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<Dialog id="sd" title="Copy Warp Pattern" >
+   <f:SimpleForm id="plloop">
+           <Label id="poan" text="Mastrcard No." />
+          
+           <ComboBox items="{path : '/ChangeQualityF4', length : '100000'}" change="readwarp" selectionChange="readwarp" showSecondaryValues="true" id="card" >
+                <items>  
+                        <core:ListItem id="jklc" text="{Zpno}" key="{Zpno}" additionalText="{ProductDescription}" />
+                </items>
+            </ComboBox>
+   </f:SimpleForm>
+   
+   <endButton>
+   <Button id="pclose" text="Close" press="onclosedialog" ></Button>
+   </endButton>
+   </Dialog>
+  
+</core:FragmentDefinition>

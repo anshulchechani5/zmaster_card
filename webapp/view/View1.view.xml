@@ -1,0 +1,46 @@
+<mvc:View controllerName="zmastercard.zmastercard.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}" >
+             <content>
+            <Panel backgroundDesign="Transparent" id="Panel1" >
+                <content>
+                    <f:SimpleForm id="foem" title="Master Card" editable="true" emptySpanL="8" emptySpanXL="7" emptySpanM="7" layout="ResponsiveGridLayout" class="FontColorChange" backgroundDesign="Transparent">
+                        <f:content>
+                            <Label id="a1" text="Master Card No." design="Bold" required="true" />
+                            <Input id="mastcard" maxLength="10" width="100%" placeholder="Enter Master Card No."   editable="{oCommonModel>/omastercard}" showValueHelp="true" valueHelpRequest="handlef4" />
+                        </f:content>
+                    </f:SimpleForm>
+                    <f:SimpleForm id="form2" title="Select Action"  editable="true" class="myBackgroundStyle" layout="ResponsiveGridLayout" backgroundDesign="Transparent" >
+                        <f:content>
+                            <VBox id="b1">
+                                <items>
+                                    <RadioButtonGroup select="onChangeAction" id="idActionRadioBtnGroup">
+                                        <buttons>
+                                            <RadioButton id="a2" text="Create"/>
+                                            <RadioButton id="a3" text="Change"/>
+                                            <RadioButton id="a4" text="Display"/>
+                                            <RadioButton id="a5" text="Copy Program Code"/>
+                                            <!-- <RadioButton id="a6" text="Copy Warp/weft Patern"/>
+                                            <RadioButton id="a8" text="Copy Draft/Peg Pattern"/> -->
+                                        </buttons>
+                                    </RadioButtonGroup>
+                                </items>
+                            </VBox>
+                             
+                        </f:content>
+                    </f:SimpleForm>
+                </content>
+            </Panel>
+        </content>
+        <footer>
+            <Bar id="bar">
+                <contentRight>
+                    <Button id="bte1" icon="sap-icon://open-command-field" press="onPress" type="Emphasized" text="Next" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

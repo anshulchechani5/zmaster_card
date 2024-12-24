@@ -1,0 +1,47 @@
+specVersion: "2.6"
+metadata:
+  name: zmastercard.zmastercard
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /sap/opu/odata/sap/ZMASTER_CARD_SERVICE_BIN/
+            url: https://my405100-api.s4hana.cloud.sap
+            destination: MY405100
+            authenticationType: SAMLAssertion
+          - path: /sap
+            url: https://my405100-api.s4hana.cloud.sap
+            destination: MY405100
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZMASTER_CARD_SERVICE_BIN
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/metadata.xml
+            mockdataRootPath: ./webapp/localService/data
+          - urlPath: /sap/opu/odata/sap/ZMASTER_CARD_SERVICE_BIN/
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/mockdata
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZAUTO_BOM_V2_BIN
+            metadataXmlPath: ./webapp/localService/ZAUTO_BOM_V2_BIN/metadata.xml
+            mockdataRootPath: ./webapp/localService/ZAUTO_BOM_V2_BIN/mockdata
+            generateMockData: true
+        annotations: []

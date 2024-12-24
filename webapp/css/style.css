@@ -1,0 +1,38 @@
+/* Enter your custom styles here */
+.Set_Pading {
+    padding-left: 12px;
+}
+.myBackgroundStyle {
+    padding-bottom: 69px ;
+    background-repeat:no-repeat;
+    background-position:bottom;
+    margin-bottom: 69px;
+     /* opacity: 0.4;  */
+    /* background: rgba(76, 175, 80, 0.3); */
+    animation: change 3600s infinite;
+    font-size: large;
+}
+div[id*='form1'] div h5 {   
+    display: none !important;
+}
+@keyframes change {
+    0% {
+        background-image: url('IMG_1728.PNG');
+    }
+
+    60% {
+        background-image: url('IMG_1728.PNG');    
+    }
+
+    100% {
+        background-image: url('IMG_1728.PNG');
+    }
+
+    
+}
+.FontColorChange {
+    color: rgb(0, 0, 0);
+    opacity: 10;
+    font: bolder;
+    color: black;
+}

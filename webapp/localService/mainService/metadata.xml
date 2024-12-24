@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ODM',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.ODM.v1" Alias="SAP__ODM"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zmaster_card_service_def" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="PlantDataType" sap:label="Plant" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="PlantName" sap:label="Plant"/>
+                <Property Name="PlantName" Type="Edm.String" MaxLength="30" sap:label="Plant Name"/>
+                <Property Name="ValuationArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Valuation Area"/>
+                <Property Name="PlantCustomer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Customer No Plant" sap:quickinfo="Customer Number of Plant"/>
+                <Property Name="PlantSupplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Sppl. No. Plnt" sap:quickinfo="Supplier Number of Plant"/>
+                <Property Name="FactoryCalendar" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Factory Calendar" sap:quickinfo="Factory calendar key"/>
+                <Property Name="DefaultPurchasingOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Purch. Organization" sap:quickinfo="Purchasing Organization"/>
+                <Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sls Organization ICB" sap:quickinfo="Sales Organization for Intercompany Billing"/>
+                <Property Name="AddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Address"/>
+                <Property Name="PlantCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Plant Cat." sap:quickinfo="Plant category"/>
+                <Property Name="DistributionChannel" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Distrib.Channel" sap:quickinfo="Distribution Channel for Intercompany billing"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Interco. Billing Div" sap:quickinfo="Division for Intercompany Billing"/>
+                <Property Name="Language" Type="Edm.String" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="IsMarkedForArchiving" Type="Edm.Boolean" sap:label="Archiving Flag" sap:quickinfo="Central archiving marker for master record"/>
+                <Property Name="BusinessPlace" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Business Place"/>
+            </EntityType>
+            <EntityType Name="ZBOM_MCPType" sap:label="ZBOM &amp; MASTER PROJ" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                    <PropertyRef Name="FromDate"/>
+                    <PropertyRef Name="ToDate"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FromDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+                <Property Name="ToDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+                <Property Name="unit_field" Type="Edm.String" MaxLength="2" sap:semantics="unit-of-measure"/>
+                <Property Name="WarpQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="unit_field"/>
+                <Property Name="WeftQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="unit_field"/>
+                <Property Name="SelvedgeQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="unit_field"/>
+            </EntityType>
+            <EntityType Name="LOOM_TYPEType" sap:label="Cds For Loom Type F4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Serialno"/>
+                </Key>
+                <Property Name="Serialno" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="Loomtype" Type="Edm.String" MaxLength="25"/>
+            </EntityType>
+            <EntityType Name="ZPC_DRAFTPEGPLANType" sap:label="Draftpegpllan Proj Cds For Master Card Screen" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                    <PropertyRef Name="Pmgroup"/>
+                    <PropertyRef Name="Ptype"/>
+                    <PropertyRef Name="Zpmsno"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Pmgroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="Ptype" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Zpmsno" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="Pmdesc" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Mul" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative"/>
+                <Property Name="Repeats" Type="Edm.String" MaxLength="2"/>
+                <Property Name="Remark" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="ZPC_HEADERMASTERType" sap:label="Projection View for ZQM_INSPECTION_DATA" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:updatable="false"/>
+                <Property Name="Zpdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="Field of type DATS"/>
+                <Property Name="Zpdevno" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zpunit" Type="Edm.String" MaxLength="4"/>
+                <Property Name="Ploom" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Zpqlycode" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Zpreed1" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative"/>
+                <Property Name="Zppicks" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Zpreedspace" Type="Edm.Decimal" Precision="7" Scale="2"/>
+                <Property Name="Zpbrand" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Zptotends" Type="Edm.Decimal" Precision="15" Scale="0"/>
+                <Property Name="extraends" Type="Edm.Decimal" Precision="15" Scale="0"/>
+                <Property Name="Zpbeamlgh1" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative"/>
+                <Property Name="Zpbeamlgh2" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="Zpepi" Type="Edm.Decimal" Precision="8" Scale="2"/>
+                <Property Name="Zpdytype" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Zpweavetype" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Zpfinwdth" Type="Edm.Decimal" Precision="3" Scale="0"/>
+                <Property Name="Zppriority" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Zpptyname" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Zpwtpermtr" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="zwawtpermtr" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="zwewtpermtr" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="ztowtpermtr" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="remark" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Zpshldbewt" Type="Edm.Decimal" Precision="10" Scale="0"/>
+                <Property Name="Zpstatus" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Zpremarks" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Zpusername" Type="Edm.String" MaxLength="12"/>
+                <Property Name="Zptime" Type="Edm.Time" Precision="0"/>
+                <Property Name="Dpr" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative"/>
+                <Property Name="Epr" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative"/>
+                <Property Name="Epd" Type="Edm.Decimal" Precision="4" Scale="0"/>
+                <Property Name="Ppr" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative"/>
+                <Property Name="Stends" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Stdents" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Bodyends" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Warptends" Type="Edm.Decimal" Precision="6" Scale="0"/>
+                <Property Name="Wefttends" Type="Edm.Decimal" Precision="6" Scale="0"/>
+                <Property Name="Stepr" Type="Edm.Decimal" Precision="6" Scale="0"/>
+                <Property Name="Swpmtr" Type="Edm.Decimal" Precision="10" Scale="0"/>
+                <Property Name="Wstepr" Type="Edm.Decimal" Precision="10" Scale="0"/>
+                <Property Name="Wswpmtr" Type="Edm.Decimal" Precision="10" Scale="0"/>
+                <Property Name="Totmono" Type="Edm.Decimal" Precision="6" Scale="0"/>
+                <Property Name="Selvedgewpmtr" Type="Edm.Decimal" Precision="10" Scale="0"/>
+                <Property Name="Stends1" Type="Edm.Decimal" Precision="15" Scale="0"/>
+                <Property Name="Crimp" Type="Edm.Decimal" Precision="4" Scale="2"/>
+                <Property Name="Zunit" Type="Edm.String" MaxLength="3" sap:semantics="unit-of-measure"/>
+                <Property Name="Zanlyswt" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Zunit"/>
+                <Property Name="Zselvtyp" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Zmonotyp" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Pdvlp" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Psnm" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Propac" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Plength" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Siqlty" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12"/>
+                <Property Name="ZVbeln" Type="Edm.String" MaxLength="10"/>
+                <Property Name="ZPosnr" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative"/>
+                <Property Name="Zdent" Type="Edm.Decimal" Precision="4" Scale="2"/>
+                <Property Name="Blend" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ReleaseMcard" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ReleaseDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="ReleaseBy" Type="Edm.String" MaxLength="12"/>
+                <Property Name="SalesWidth" Type="Edm.String" MaxLength="40"/>
+                <Property Name="OldQlty" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ZsubWeave" Type="Edm.String" MaxLength="20"/>
+                <Property Name="DyeSort" Type="Edm.String" MaxLength="40"/>
+                <Property Name="pdnumber" Type="Edm.String" MaxLength="20"/>
+                <Property Name="supplier" Type="Edm.String" MaxLength="40"/>
+                <Property Name="pvends" Type="Edm.Int64"/>
+                <Property Name="fabricends" Type="Edm.Int64"/>
+                <Property Name="weavingreamrk" Type="Edm.String" MaxLength="500"/>
+                <Property Name="selvedgeends" Type="Edm.Int64"/>
+                <Property Name="LastChangedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed On" sap:quickinfo="Local Instance Last Change Date Time" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ZPC_MONOGRAMType" sap:label=" pc monogram PROJ" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                    <PropertyRef Name="Zpmsno"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zpmsno" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="NonNegative"/>
+                <Property Name="Zpmmonog" Type="Edm.String" MaxLength="150"/>
+                <Property Name="Zpmsaveas" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Zpmlength" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Zpmmktordno" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Zpmremarks" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Mark" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Zname" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Kunnr" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="zpc_number_rangeType" sap:label=" pc number range proj" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                    <PropertyRef Name="Zpbrand"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="Zpbrand" Type="Edm.String" Nullable="false" MaxLength="15"/>
+                <Property Name="Curzpno" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+            </EntityType>
+            <EntityType Name="ZPC_SELVEDGEType" sap:label="Selevedge Proj Cds For Master Card Screen" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                    <PropertyRef Name="Zpmsno"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zpmsno" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative"/>
+                <Property Name="Zpmtype" Type="Edm.String" MaxLength="2"/>
+                <Property Name="Zpmcountsys" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Rescnt" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="Zpmyqlty" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Maktx" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Shaft" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Dent" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Dent1" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Ends" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="Repeats" Type="Edm.String" MaxLength="2"/>
+                <Property Name="Mul" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="Totalends" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Pmdesc" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shades" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Mark" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Wpmtr" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="Icon" Type="Edm.String" MaxLength="4"/>
+                <Property Name="Center" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="zpc_warpmatch1Type" sap:label=" pc warpmatch1 proj" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                    <PropertyRef Name="Zpmsno"/>
+                    <PropertyRef Name="Pattern"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zpmsno" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative"/>
+                <Property Name="Pattern" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Zpmyqlty" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Maktx" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Wefttype" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Q1m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q1p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q1o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q1l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q2m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q2p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q2o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q2l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q3m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q3p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q3o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q3l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q4m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q4p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q4o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q4l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q5m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q5p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q5o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q5l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q6m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q6p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q6o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q6l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q7m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q7p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q7o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q7l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q8m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q8p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q8o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q8l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q9m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q9p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q9o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q9l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q10m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q10p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q10o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q10l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q11m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q11p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q11o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q11l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q12m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q12p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q12o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q12l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q13m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q13p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q13o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q13l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q14m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q14p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q14o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q14l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q15m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q15p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q15o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q15l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q16m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q16p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q16o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q16l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q17m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q17p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q17o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q17l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q18m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q18p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q18o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q18l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q19m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q19p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q19o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q19l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q20m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q20p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q20o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q20l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q21m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q21p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q21o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q21l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q22m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q22p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q22o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q22l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q23m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q23p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q23o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q23l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q24m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q24p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q24o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q24l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q25m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q25p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q25o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q25l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q26m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q26p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q26o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q26l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q27m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q27p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q27o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q27l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q28m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q28p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q28o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q28l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q29m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q29p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q29o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q29l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q30m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q30p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q30o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q30l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q31m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q31p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q31o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q31l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q32m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q32p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q32o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q32l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q33m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q33p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q33o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q33l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q34m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q34p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q34o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q34l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q35m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q35p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q35o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q35l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q36m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q36p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q36o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q36l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q37m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q37p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q37o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q37l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q38m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q38p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q38o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q38l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q39m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q39p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q39o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q39l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q40m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q40p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q40o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q40l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q41m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q41p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q41o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q41l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q42m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q42p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q42o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q42l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q43m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q43p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q43o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q43l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q44m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q44p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q44o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q44l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q45m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q45p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q45o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q45l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q46m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q46p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q46o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q46l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q47m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q47p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q47o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q47l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q48m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q48p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q48o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q48l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q49m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q49p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q49o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q49l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Q50m" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q50p" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q50o" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Q50l" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="Mark" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Q1q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q2q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q3q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q4q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q5q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q6q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q7q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q8q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q9q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q10q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q11q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q12q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q13q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q14q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Q15q" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Flag" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="zpc_warpmatchingType" sap:label="pc warpmatching proj" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zmatch" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Zpmsno" Type="Edm.String" MaxLength="6"/>
+            </EntityType>
+            <EntityType Name="zpc_warppatternType" sap:label="pc  warppattern proj" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                    <PropertyRef Name="Zpmsno"/>
+                    <PropertyRef Name="Pattern"/>
+                    <PropertyRef Name="Grp"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zpmsno" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative"/>
+                <Property Name="Pattern" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Grp" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Zpmtype" Type="Edm.String" MaxLength="2"/>
+                <Property Name="Zpmcountsys" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Rescnt" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="Zpmyqlty" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Maktx" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Pall" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P1" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P2" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P3" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P4" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P5" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P6" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P7" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P8" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P9" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P10" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P11" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P12" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P13" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P14" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P15" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P16" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P17" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P18" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P19" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P20" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P21" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P22" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P23" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P24" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P25" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P26" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P27" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P28" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P29" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P30" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P31" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P32" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P33" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P34" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P35" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P36" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P37" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P38" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P39" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P40" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P41" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P42" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P43" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P44" Type="Edm.String" MaxLength="3"/>
+                <Property Name="P45" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Rep" Type="Edm.String" MaxLength="2"/>
+                <Property Name="Ends" Type="Edm.Decimal" Precision="6" Scale="0"/>
+                <Property Name="Tepr" Type="Edm.Decimal" Precision="11" Scale="0"/>
+                <Property Name="Wpmtr" Type="Edm.Decimal" Precision="11" Scale="3"/>
+                <Property Name="Mark" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="DyeingShadeTmgType" sap:label="Cds For Dyeing Shade Tmg" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Srno"/>
+                    <PropertyRef Name="Dyeingshade"/>
+                </Key>
+                <Property Name="Srno" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Dyeingshade" Type="Edm.String" Nullable="false" MaxLength="15"/>
+                <Property Name="dyeindesc" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By" sap:quickinfo="Created By User"/>
+                <Property Name="CreatedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created On" sap:quickinfo="Creation Date Time"/>
+            </EntityType>
+            <EntityType Name="SupplierType" sap:label="Cds For Master Card Supplier F4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CustomerName"/>
+                </Key>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Name of Customer"/>
+            </EntityType>
+            <EntityType Name="ChangeQualityF4Type" sap:label="Cds For Master Headr F4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zpno"/>
+                </Key>
+                <Property Name="Zpno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="Zpqlycode" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Zpunit" Type="Edm.String" MaxLength="4"/>
+                <Property Name="DyeSort" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+            </EntityType>
+            <EntityType Name="MAT_DESType" sap:label="CDS For Master Card Screen For Mat &amp; MatDes" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="TYPE" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Dent" Type="Edm.Int32"/>
+                <Property Name="Reed" Type="Edm.Int32"/>
+                <Property Name="Epi" Type="Edm.Int32"/>
+                <Property Name="Reedspace" Type="Edm.Int32"/>
+                <Property Name="Pick" Type="Edm.Int32"/>
+                <Property Name="Weave" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Dyeingsort" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Dyeingshade" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Extraends" Type="Edm.Int64"/>
+                <Property Name="Pdno" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Totalends" Type="Edm.Int64"/>
+                <Property Name="Loomtype" Type="Edm.String" MaxLength="15"/>
+            </EntityType>
+            <EntityType Name="DYESORTType" sap:label="Cds For  Mat &amp; Des For Dyesort" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="dyeingshade" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="Mat_Des_FGType" sap:label="Cds For Materail Des FG" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="TYPE" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Dent" Type="Edm.Int32"/>
+                <Property Name="Reed" Type="Edm.Int32"/>
+                <Property Name="Epi" Type="Edm.Int32"/>
+                <Property Name="Reedspace" Type="Edm.Int32"/>
+                <Property Name="Pick" Type="Edm.Int32"/>
+                <Property Name="Weave" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Dyeingsort" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Dyeingshade" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Extraends" Type="Edm.Int64"/>
+                <Property Name="Pdno" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Totalends" Type="Edm.Int64"/>
+                <Property Name="Loomtype" Type="Edm.String" MaxLength="15"/>
+            </EntityType>
+            <EntityType Name="Mat_Des_PDType" sap:label="Cds For Materail Des PD" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="TYPE" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Dent" Type="Edm.Int32"/>
+                <Property Name="Reed" Type="Edm.Int32"/>
+                <Property Name="Epi" Type="Edm.Int32"/>
+                <Property Name="Reedspace" Type="Edm.Int32"/>
+                <Property Name="Pick" Type="Edm.Int32"/>
+                <Property Name="Weave" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Dyeingsort" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Dyeingshade" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Extraends" Type="Edm.Int64"/>
+                <Property Name="Pdno" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Totalends" Type="Edm.Int64"/>
+                <Property Name="Loomtype" Type="Edm.String" MaxLength="15"/>
+            </EntityType>
+            <EntityType Name="YARN_DESType" sap:label="Cds For Yarn Mat &amp; Des" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductOldID" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Old Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="TYPE" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="PdSortf4Type" sap:label="Cds For  Mat &amp; Des For SortMaster" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="TYPE" Type="Edm.String" MaxLength="1"/>
+                <Property Name="pdno" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="ZPP_SORTMASTER_CDSType" sap:label="Cds For SortMaster Denim" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="Pdno"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="Pdno" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="pdcode" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Dyeingsort" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Mattype" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Reed" Type="Edm.Int32"/>
+                <Property Name="Dent" Type="Edm.Int32"/>
+                <Property Name="Epi" Type="Edm.Int32"/>
+                <Property Name="Warpcount1" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Warptype1" Type="Edm.String" MaxLength="40"/>
+                <Property Name="warptypedesc1" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratiowarpper1" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Warpcount2" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Warptype2" Type="Edm.String" MaxLength="40"/>
+                <Property Name="warptypedesc2" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratiowarpper2" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Warpcount3" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Warptype3" Type="Edm.String" MaxLength="40"/>
+                <Property Name="warptypedesc3" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratiowarpper3" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Weftcount1" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Wefttype1" Type="Edm.String" MaxLength="40"/>
+                <Property Name="wefttypedesc1" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratioweftper1" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Weftcount2" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Wefttype2" Type="Edm.String" MaxLength="40"/>
+                <Property Name="wefttypedesc2" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratioweftper2" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Weftcount3" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Wefttype3" Type="Edm.String" MaxLength="40"/>
+                <Property Name="wefttypedesc3" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratioweftper3" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Weftcount4" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Wefttype4" Type="Edm.String" MaxLength="40"/>
+                <Property Name="wefttypedesc4" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Ratioweftper4" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Pick" Type="Edm.Int32"/>
+                <Property Name="Reedspace" Type="Edm.Int32"/>
+                <Property Name="Extraends" Type="Edm.Int64"/>
+                <Property Name="Totalends" Type="Edm.Int64"/>
+                <Property Name="Dyeingshade" Type="Edm.String" MaxLength="10"/>
+                <Property Name="shadepercen" Type="Edm.String" MaxLength="10"/>
+                <Property Name="shadepercen2" Type="Edm.String" MaxLength="10"/>
+                <Property Name="shadepercen3" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Weave" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Design" Type="Edm.String" MaxLength="15"/>
+                <Property Name="processroute" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Remark1" Type="Edm.String" MaxLength="200"/>
+                <Property Name="Shrinkage" Type="Edm.String" MaxLength="10"/>
+                <Property Name="greiegewidthinch" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Stdwidthinch" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Stdwidthcms" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Stdweight" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Weight" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Finwd" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Tareweight" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="Remark2" Type="Edm.String" MaxLength="200"/>
+                <Property Name="Samplingweight" Type="Edm.Decimal" Precision="6" Scale="3"/>
+                <Property Name="Washweight" Type="Edm.Decimal" Precision="6" Scale="3"/>
+                <Property Name="Stretch" Type="Edm.String" MaxLength="10"/>
+                <Property Name="warpshrinperce" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="weftshrinperce" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="greypotentialwarpper" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Sort" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Finishtype" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Blend" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Loomtype" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Compostion" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Fepi" Type="Edm.Int32"/>
+                <Property Name="Fppi" Type="Edm.Int32"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="gsm" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="stdwidthinchtolerance" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="stdweighttolerance" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="stretchpertolerance" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="wapshirnakgeperfrom" Type="Edm.Decimal" Precision="13" Scale="3"/>
+            </EntityType>
+            <EntityType Name="WEAVE_CODE_DESType" sap:label="Cds For Weave Code &amp; Des" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Weavecode"/>
+                </Key>
+                <Property Name="Weavecode" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Weavedes" Type="Edm.String" MaxLength="40"/>
+            </EntityType>
+            <EntityType Name="Weft_DESType" sap:label="Cds For  MasterCard Weft F4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="ProductOldID" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Old Product Number"/>
+                <Property Name="ProductDescription" Type="Edm.String" MaxLength="40" sap:label="Product Description"/>
+                <Property Name="TYPE" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="zqcdType" sap:label="qcd proj" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Cbcode"/>
+                </Key>
+                <Property Name="Cbcode" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="Cgcode" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Rescnt" Type="Edm.Decimal" Precision="10" Scale="3"/>
+                <Property Name="Maktx" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Waste" Type="Edm.Decimal" Precision="5" Scale="2"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="Ernam" Type="Edm.String" MaxLength="12"/>
+            </EntityType>
+            <EntityContainer Name="cds_zmaster_card_service_def_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PlantData" EntityType="cds_zmaster_card_service_def.PlantDataType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZBOM_MCP" EntityType="cds_zmaster_card_service_def.ZBOM_MCPType" sap:content-version="1"/>
+                <EntitySet Name="LOOM_TYPE" EntityType="cds_zmaster_card_service_def.LOOM_TYPEType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPC_DRAFTPEGPLAN" EntityType="cds_zmaster_card_service_def.ZPC_DRAFTPEGPLANType" sap:content-version="1"/>
+                <EntitySet Name="ZPC_HEADERMASTER" EntityType="cds_zmaster_card_service_def.ZPC_HEADERMASTERType" sap:content-version="1"/>
+                <EntitySet Name="ZPC_MONOGRAM" EntityType="cds_zmaster_card_service_def.ZPC_MONOGRAMType" sap:content-version="1"/>
+                <EntitySet Name="zpc_number_range" EntityType="cds_zmaster_card_service_def.zpc_number_rangeType" sap:content-version="1"/>
+                <EntitySet Name="ZPC_SELVEDGE" EntityType="cds_zmaster_card_service_def.ZPC_SELVEDGEType" sap:content-version="1"/>
+                <EntitySet Name="zpc_warpmatch1" EntityType="cds_zmaster_card_service_def.zpc_warpmatch1Type" sap:content-version="1"/>
+                <EntitySet Name="zpc_warpmatching" EntityType="cds_zmaster_card_service_def.zpc_warpmatchingType" sap:content-version="1"/>
+                <EntitySet Name="zpc_warppattern" EntityType="cds_zmaster_card_service_def.zpc_warppatternType" sap:content-version="1"/>
+                <EntitySet Name="DyeingShadeTmg" EntityType="cds_zmaster_card_service_def.DyeingShadeTmgType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Supplier" EntityType="cds_zmaster_card_service_def.SupplierType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ChangeQualityF4" EntityType="cds_zmaster_card_service_def.ChangeQualityF4Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MAT_DES" EntityType="cds_zmaster_card_service_def.MAT_DESType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DYESORT" EntityType="cds_zmaster_card_service_def.DYESORTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Mat_Des_FG" EntityType="cds_zmaster_card_service_def.Mat_Des_FGType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Mat_Des_PD" EntityType="cds_zmaster_card_service_def.Mat_Des_PDType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="YARN_DES" EntityType="cds_zmaster_card_service_def.YARN_DESType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PdSortf4" EntityType="cds_zmaster_card_service_def.PdSortf4Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPP_SORTMASTER_CDS" EntityType="cds_zmaster_card_service_def.ZPP_SORTMASTER_CDSType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="WEAVE_CODE_DES" EntityType="cds_zmaster_card_service_def.WEAVE_CODE_DESType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Weft_DES" EntityType="cds_zmaster_card_service_def.Weft_DESType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="zqcd" EntityType="cds_zmaster_card_service_def.zqcdType" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ChangeQualityF4" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/DYESORT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/DyeingShadeTmg" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/LOOM_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/MAT_DES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/Mat_Des_FG" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/Mat_Des_PD" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/PdSortf4" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/PlantData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/Supplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/WEAVE_CODE_DES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/Weft_DES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/YARN_DES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ZPP_SORTMASTER_CDS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.ZPC_HEADERMASTERType/Zpno" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.Immutable"/>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ZBOM_MCP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ZPC_DRAFTPEGPLAN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ZPC_HEADERMASTER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>Zpno</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ZPC_MONOGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/ZPC_SELVEDGE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/zpc_number_range" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/zpc_warpmatch1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/zpc_warpmatching" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/zpc_warppattern" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities/zqcd" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.PlantDataType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SAPObjectNodeType">
+                    <Record>
+                        <PropertyValue Property="Name" String="Plant"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.PlantDataType/PlantCategory" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SAPObjectNodeTypeReference" String="PlantCategory"/>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.ZPC_HEADERMASTERType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Zpno</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zmaster_card_service_def.cds_zmaster_card_service_def_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+                    <Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+                        <PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/sap/ZMASTER_CARD_SERVICE_BIN/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://my405100-api.s4hana.cloud.sap/sap/opu/odata/sap/ZMASTER_CARD_SERVICE_BIN/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

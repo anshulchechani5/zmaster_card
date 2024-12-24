@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m"  xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<Dialog id="pool" title="Copy Weft Pattern" >
+   <f:SimpleForm id="loop">
+           <Label id="anshul" text="Mastrcard No." />
+           <ComboBox items="{path : '/ChangeQualityF4', length : '100000'}" change="readweft" selectionChange="readweft" showSecondaryValues="true" id="mcard" >
+                <items>  
+                        <core:ListItem id="qwsrt" text="{Zpno}" key="{Zpno}" additionalText="{ProductDescription}" />
+                </items>
+            </ComboBox>
+   </f:SimpleForm>
+   
+   <endButton>
+   <Button id="lopclose" text="Close" press="onclosedialog1" ></Button>
+   </endButton>
+   </Dialog>
+  
+</core:FragmentDefinition>

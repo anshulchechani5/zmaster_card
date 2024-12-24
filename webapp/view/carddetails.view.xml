@@ -1,0 +1,715 @@
+<mvc:View controllerName="zmastercard.zmastercard.controller.carddetails"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:table="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    width="100%">
+    <Page id="carddetails" title="{i18n>title}" visible="true">
+        <content >
+                <f:SimpleForm id="f6" layout="ResponsiveGridLayout" columnsL="4" columnsXL="3" columnsM="2" editable="true" >
+                    <f:content>
+                        <core:Title id="titl1" />
+                        <Label id="l1" text="Master card" required="true"  />
+                        <Input id="masc" value="{oHeaderPayload>/Zpno}" editable="false" maxLength="10" />
+                        <Label id="l2" text="Plant" required="true" />
+                        <ComboBox items="{/PlantData}" value="{oHeaderPayload>/Zpunit}" showSecondaryValues="true" id="plant" editable="{oGenericModel>/setEditable}">
+                            <items>
+                                <core:ListItem id="li1" text="{Plant}" key="{Plant}" additionalText="{PlantName}" />
+                            </items>
+                        </ComboBox>
+                        
+                        <!-- <Input id="dept" value="{oHeaderPayload>/Zpbrand}" maxLength="15" placeholder="Enter Department " valueHelpRequest="" showValueHelp="true" editable="{oGenericModel>/setEditable}" /> -->
+                        <Label id="l3" text="Reed/Dent" required="true" />
+                        <Input id="reed" value="{oHeaderPayload>/Zpreed1}" width="60px" type="Number" liveChange="livechange" maxLength="3" editable="{oGenericModel>/setEditable}"/>
+                        <Input id="dent" value="{oHeaderPayload>/Zdent}" submit="ONEPI" width="60px" type="Number" liveChange="livechange" maxLength="3" editable="{oGenericModel>/setEditable}" />
+                        <Label id="l4" text="EPI" required="true" />
+                        <Input id="EPI" value="{oHeaderPayload>/Zpepi}" editable="false"  />
+                        <Label id="l5" text="Picks" required="true" />
+                        <Input id="Picks" value="{oHeaderPayload>/Zppicks}" type="Number" liveChange="livechange" maxLength="4" width="70px" editable="{oGenericModel>/setEditable}" />
+                        <Label id="l6" text="Reed Space " required="true" />
+                        <Input id="reeds" value="{oHeaderPayload>/Zpreedspace}" liveChange="livechange" type="Number"  submit="onformulatotends" maxLength="3" placeholder="Enter Reed Space " editable="{oGenericModel>/setEditable}"/>
+                         <Label id="l7" text="Remark" />
+                        <Input id="remarkhead" value="{oHeaderPayload>/remark}" maxLength="20" placeholder="Enter Remark " editable="{oGenericModel>/setEditable}"/>
+                        
+                        
+                        <core:Title id="title2" />
+                        <!-- <Label text="Sales Order" />
+                        <Input id="SO" value="{oHeaderPayload>/ZVbeln}" maxLength="10" placeholder="Enter Sales Order " valueHelpRequest="" showValueHelp="true" editable="{oGenericModel>/setEditable}" /> -->
+                        <Label id="l8" text="Department"  required="true"/>
+                        <ComboBox id="dept" value="{oHeaderPayload>/Zpbrand}" selectionChange="Quality"  editable="{oGenericModel>/setEditable}">
+                            <items>
+                                <core:ListItem id="li5" text="PPC" />
+                                <core:ListItem id="li6" text="PD" />
+                            </items>
+                        </ComboBox>
+                        <Label id="l9" text="Quality Code"  required="true"/>
+                        <!-- <ComboBox items="{oCommonModel>/GateType}" value="{oHeaderPayload>/Zpqlycode}"  selectionChange="Qualitycodesubmit" showSecondaryValues="true" change="Qualitycodesubmit" id="QUAco" editable="{oGenericModel>/setEditable}">
+                            <items>
+                                <core:ListItem text="{oCommonModel>Key}" key="{oCommonModel>Key}" additionalText="{oCommonModel>Ddescription}" />
+                            </items>
+                        </ComboBox> -->
+                        <Input id="QUAco" value="{oHeaderPayload>/Zpqlycode}"  liveChange="Qualitycodesubmit"  placeholder="Enter Quality Code"  valueHelpRequest="F4MATDES" showValueHelp="true" editable="{oGenericModel>/setEditable}" />
+                        
+                        <Label id="l10" text="Quality Desc"  required="true"/>
+                        <Input id="QUAdesc" editable="false" />
+                        
+                        <Label id="l11" text="Weave"  required="true"/>
+                        <ComboBox items="{path : '/WEAVE_CODE_DES', length : '100000'}"  value="{oHeaderPayload>/Zpweavetype}" showSecondaryValues="true"  id="Weave" editable="{oGenericModel>/setEditable}">
+                            <items>
+                                <core:ListItem id="li7" text="{Weavedes}" key="{Weavedes}" additionalText="{Weavecode}" />
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="Weave" value="{oHeaderPayload>/Zpweavetype}" valueHelpRequest="" showValueHelp="true" editable="{oGenericModel>/setEditable}" /> -->
+                        <!-- <Label text="Old Qua. Ref." />
+                        <Input id="OQF" value="{oHeaderPayload>/OldQlty}" maxLength="20"  editable="{oGenericModel>/setEditable}" /> -->
+                        <Label id="l12" text="Dyeing Sort " />
+                        <ComboBox id="iddyeingsort" items="{path : '/DYESORT', length : '100000'}" value="{oHeaderPayload>/DyeSort}" showSecondaryValues="true" change="ondyeingshade" editable="{oGenericModel>/setEditable}">
+                            <items> 
+                                <core:ListItem id="li8" text="{Product}" key="{Product}" additionalText="{ProductDescription}" />
+                            </items>
+                        </ComboBox>
+                        <Label id="l13" text="Party Name" />
+                        <ComboBox id="supplier" items="{path : '/Supplier', length : '100000'}" value="{oHeaderPayload>/supplier}" showSecondaryValues="true"  editable="{oGenericModel>/setEditable}">
+                            <items> 
+                                <core:ListItem id="li9" text="{CustomerName}" key="{CustomerName}"  />
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="supplier" value="{oHeaderPayload>/supplier}" maxLength="30" placeholder="Enter Party Name " editable="{oGenericModel>/setEditable}" /> -->
+                        <!-- <Label text="Finish Width" />
+                        <Input id="Fwdh" value="{oHeaderPayload>/Zpfinwdth}" maxLength="3" placeholder="Enter Finish Width " editable="{oGenericModel>/setEditable}"/> -->
+
+                        
+                        <Label id="l141" text="PV Ends" required="true" /> 
+                        <!-- Pv Ends To Change As Fabric Ends -->
+                        <Input id="pvends" value="{oHeaderPayload>/pvends}" submit="livechange1" type="Number" liveChange="livechange1"  maxLength="5" editable="{oGenericModel>/setEditable}" />
+                        
+                        <core:Title id="title3" />
+                        <Label id="l14" text="Piece Length" />
+                        <Input id="pilth" value="{oHeaderPayload>/Plength}"  type="Number" liveChange="livechange" maxLength="3" placeholder="Enter Piece Length " editable="{oGenericModel>/setEditable}" />
+                        <!-- <Label text="Selvedge Type" />
+                        <Input id="seltyp" value="{oHeaderPayload>/Zselvtyp}" maxLength="20" placeholder="Enter Selvedge Type " editable="{oGenericModel>/setEditable}"/> -->
+                        <Label id="l15" text="Dyeing Shade" />
+                        <!-- <Input id="dyetyp" value="{oHeaderPayload>/Zpdytype}" maxLength="15"  placeholder="Enter Dyeing Shade " editable="{oGenericModel>/setEditable}"/> -->
+                        <ComboBox id="dyetyp" items="{path : '/DyeingShadeTmg', length : '100000'}" value="{oHeaderPayload>/Zpdytype}" showSecondaryValues="true"  editable="{oGenericModel>/setEditable}">
+                            <items> 
+                                <core:ListItem id="l09" text="{Dyeingshade}" key="{Dyeingshade}"  />
+                            </items>
+                        </ComboBox>
+                        <Label id="l16" text="Crimp" />
+                        <Input id="crimp" value="{oHeaderPayload>/Crimp}" width="50px" type="Number" liveChange="livechange" maxLength="3" editable="{oGenericModel>/setEditable}"/>
+                        <Label id="l17" text="Date" />
+                        <DatePicker placeholder="Enter Date" id="date" displayFormat="yyyy-MM-dd" value="{oDateModel>/dDefaultDate}" editable="false" />
+                        <Label id="l18" text="PD No." />
+                        <!-- <Input id="crmat" value="{oHeaderPayload>/pdnumber}" editable="{oGenericModel>/setEditable}" maxLength="15"  /> -->
+                        <ComboBox id="crmat" items="{path : '/PdSortf4', length : '100000'}" value="{oHeaderPayload>/pdnumber}" showSecondaryValues="true"  editable="{oGenericModel>/setEditable}">
+                            <items> 
+                                <core:ListItem id="l090" text="{ProductDescription}" key="{ProductDescription}" additionalText="{Product}" />
+                            </items>
+                        </ComboBox>
+                        <Label id="l19" text="Extra Ends" />
+                        <Input id="extraends"  value="{oHeaderPayload>/extraends}" submit="extraendsadd" editable="{oGenericModel>/setEditable}" maxLength="4"  />
+
+
+                        <Label id="l41" text="PV Ends" />
+                        <!-- Fabric Ends To Change As PV Ends -->
+                        <Input id="fabricends" value="{oHeaderPayload>/fabricends}" liveChange="livechange"  type="Number"  maxLength="5" editable="false" />
+                        
+                        <core:Title id="title5" />
+                        <Label id="l20" text="Loom Type"/>
+                        <!-- <Input id="Lotyp" value="{oHeaderPayload>/Ploom}" maxLength="40" editable="{oGenericModel>/setEditable}" /> -->
+                        <ComboBox id="Lotyp" items="{path : '/LOOM_TYPE', length : '100000'}" value="{oHeaderPayload>/Ploom}" showSecondaryValues="true"  editable="{oGenericModel>/setEditable}">
+                            <items> 
+                                <core:ListItem id="li10" text="{Loomtype}" key="{Loomtype}" additionalText="{Serialno}" />
+                            </items>
+                        </ComboBox>
+                        <Label id="l21" text="Body Ends" />
+                        <Input id="bodend" value="{oHeaderPayload>/Bodyends}" editable="false" />
+                        <Label id="l22" text="Selvedge Ends" />
+                        <Input id="selend" value="{oHeaderPayload>/selvedgeends}" editable="false" />
+                        <Label id="l23" text="Total Ends" />
+                        <Input id="Idtotend" value="{oHeaderPayload>/Zptotends}"  editable="false" />
+                         <Label id="l24" text="Warp Wt/Mtr" />
+                        <Input id="IDwarp" value="{oHeaderPayload>/zwawtpermtr}" editable="false"/>
+                         <Label id="l25" text="Weft Wt/Mtr" />
+                        <Input id="IDweftwtmtr" value="{oHeaderPayload>/zwewtpermtr}" editable="false"/>
+                        <Label id="l26" text="Total Wt/Mtr" />
+                        <Input id="IDTOtwtmtr" value="{oHeaderPayload>/ztowtpermtr}" editable="false"/>
+                    </f:content>
+                </f:SimpleForm>
+                <IconTabBar id="idIconBar" select="2" expanded="true">
+                    <items>
+
+                        <IconTabFilter id="idwarppattern" key="2" text="Warp Pattern">
+                            <f:SimpleForm id="f7" layout="ResponsiveGridLayout" editable="true">
+                                <f:content>
+                                    <table:Table id="idwarppaterntable" rowHeight="20px" rows="{oTableDataModel1>/aTableData1}" selectionBehavior="RowSelector">
+                                        <table:extension>
+                                            <OverflowToolbar id="warppatern" style="Clear">
+                                                <Label id="l90" text="Total Ends Per Repeat " /> 
+                                                <Input id="IDTotends" width="150px" editable="false"/>
+                                                <Button id="Copywarp" text="Copy Warp pattern" icon="sap-icon://copy" press="onOpenDialog" ></Button>
+                                                <ToolbarSpacer id="idwarppatern" />
+                                                <Label id="l28" text=" Yarn Quality" visible="{oGenericModel>/setEditable}" required="true" />
+                                                <ComboBox items="{path : '/YARN_DES', length : '100000'}" showSecondaryValues="true"  visible="{oGenericModel>/setEditable}" id="idDel1" editable="{oGenericModel>/setEditable}">
+                                                  <items>  
+                                                     <core:ListItem id="li20" text="{Product}" key="{Product}" additionalText="{ProductDescription}" />
+                                                  </items>
+                                                </ComboBox>
+                                                <!-- <Input id="idDel1"  maxLength="30" width="150px" required="true" editable="{oGenericModel>/setchangeditable}" /> -->
+                                                <Button id="bt20" text="Add" visible="{oGenericModel>/setEditable}"  icon="sap-icon://add" press="addwarppatern"  />
+                                                <Button id="idDelwarppatern" visible="{oGenericModel>/setEditable}"  icon="sap-icon://delete" tooltip="Delete Table records" press="onwarptableDelete"/>
+                                                <!-- <Button id="idaddwarppatern" icon="sap-icon://add" tooltip="Add Row Table records" press="addwarppatern"/> -->
+                                            </OverflowToolbar>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column id="a1" width="6rem">
+                                                <Label id="a2" text="Yarn Quality" />
+                                                <table:template>
+                                                    <Input id="a3" editable="false"  value="{oTableDataModel1>YarnQuality}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a4" width="11rem">
+                                                <Label  id="a5" text="Yarn Descrption" />
+                                                <table:template>
+                                                    <Input id="a6" editable="false" value="{oTableDataModel1>YarnDescrption}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a7" width="6rem">
+                                                <Label id="a8" text="Resultant Cout" />
+                                                <table:template>
+                                                    <Input id="a9" editable="{oGenericModel>/setEditable}"   submit="onformulawarp"  value="{oTableDataModel1>ResultantCout}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a10" width="6rem">
+                                                <Label id="a11" text="Ends Per Repeat"/>
+                                                <table:template>
+                                                    <Input id="a12" editable="false" value="{oTableDataModel1>endsPerRepeat}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a13" width="6rem">
+                                                <Label id="a14" text="Wt. per Meter"/>
+                                                <table:template>
+                                                    <Input id="a15" editable="false" value="{oTableDataModel1>WtperMeter}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a16" width="6rem">
+                                                <Label id="a17" text="Repeat/Multiplier"/>
+                                                <table:template>
+                                                    <Input id="a18" editable="false" value="{oTableDataModel1>RepeatMultiplier}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a19" width="2rem">
+                                                <Label id="a20" text="1"/>
+                                                <table:template>
+                                                    <Input id="a21" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2"  value="{oTableDataModel1>p1}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a22" width="2rem">
+                                                <Label id="a23" text="2"/>
+                                                <table:template>
+                                                    <Input id="a24" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p2}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a25" width="2rem">
+                                                <Label id="a26" text="3"/>
+                                                <table:template>
+                                                    <Input id="a27" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p3}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a28" width="2rem">
+                                                <Label id="a29" text="4"/>
+                                                <table:template>
+                                                    <Input id="a30" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p4}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a31" width="2rem">
+                                                <Label id="a32" text="5"/>
+                                                <table:template>
+                                                    <Input id="a33" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2"  value="{oTableDataModel1>p5}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a34" width="2rem">
+                                                <Label id="a35" text="6"/>
+                                                <table:template>
+                                                    <Input id="a36" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p6}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a37" width="2rem">
+                                                <Label id="a38" text="7"/>
+                                                <table:template>
+                                                    <Input id="a39" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p7}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a40" width="2rem">
+                                                <Label  id="a41" text="8"/>
+                                                <table:template>
+                                                    <Input id="a42" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p8}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a43" width="2rem">
+                                                <Label id="a44" text="9"/>
+                                                <table:template>
+                                                    <Input id="a45" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p9}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a46" width="3rem">
+                                                <Label id="a47" text="10"/>
+                                                <table:template>
+                                                    <Input id="a48" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p10}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a49" width="3rem">
+                                                <Label id="a50" text="11"/>
+                                                <table:template>
+                                                    <Input id="a51" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p11}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a52" width="3rem">
+                                                <Label id="a53" text="12"/>
+                                                <table:template>
+                                                    <Input id="a54" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p12}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a55" width="3rem">
+                                                <Label id="a56" text="13"/>
+                                                <table:template>
+                                                    <Input id="a57" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p13}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a58" width="3rem">
+                                                <Label id="a59" text="14"/>
+                                                <table:template>
+                                                    <Input id="a60" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p14}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a61" width="3rem">
+                                                <Label id="a62" text="15"/>
+                                                <table:template>
+                                                    <Input id="a63" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p15}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a64" width="3rem">
+                                                <Label id="a66" text="16"/>
+                                                <table:template>
+                                                    <Input id="a65" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p16}"/>
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a68" width="3rem">
+                                                <Label id="a69" text="17"/>
+                                                <table:template>
+                                                    <Input id="a70" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p17}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a71" width="3rem">
+                                                <Label id="a72" text="18"/>
+                                                <table:template>
+                                                    <Input id="a73" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p18}"/>
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a74" width="3rem">
+                                                <Label id="a75" text="19"/>
+                                                <table:template>
+                                                    <Input id="a76" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p19}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a77" width="3rem">
+                                                <Label id="a78" text="20"/>
+                                                <table:template>
+                                                    <Input id="a79" editable="{oGenericModel>/setEditable}" submit="onformulawarp" maxLength="2" value="{oTableDataModel1>p20}" />
+                                                </table:template>
+                                            </table:Column>
+                                            
+                                        </table:columns>
+                                    </table:Table>
+                                </f:content>
+                            </f:SimpleForm>
+                        </IconTabFilter>
+
+                        <IconTabFilter id="idweftpattern" key="3" text="Weft Pattern">
+                            <f:SimpleForm id="form4" layout="ResponsiveGridLayout" editable="true">
+                                <f:content>
+                                    <table:Table id="idweftpaterntable" rowHeight="20px"  rows="{oTableDataModel2>/aTableData2}" selectionBehavior="RowSelector" >
+                                        <table:extension>
+                                            <OverflowToolbar id="weftpatern" style="Clear">
+                                                <Button id="Copyweft" text="Copy Warp pattern" icon="sap-icon://copy" press="onOpenDialog1" ></Button>
+                                                <ToolbarSpacer id="idweftpatern" />
+                                                <Label id="b1" text=" Yarn Quality" visible="{oGenericModel>/setEditable}" required="true" />
+                                                <ComboBox items="{path : '/Weft_DES',length : '100000'}"  showSecondaryValues="true" visible="{oGenericModel>/setEditable}"  id="idDel2" editable="{oGenericModel>/setEditable}">
+                                                  <items>
+                                                     <core:ListItem id="b2" text="{Product}" key="{Product}" additionalText="{ProductDescription}" />
+                                                  </items>
+                                                </ComboBox>
+                                                <!-- <Input id="idDel2" editable="{oGenericModel>/setchangeditable}" maxLength="30" width="150px" required="true" /> -->
+                                                <Button id="bt1" text="Add" icon="sap-icon://add" press="addweftpatern" visible="{oGenericModel>/setEditable}"  />
+                                                <Button id="idDelweftpatern" icon="sap-icon://delete" tooltip="Delete Table records" visible="{oGenericModel>/setEditable}" press="onwefttableDelete"/>
+                                            </OverflowToolbar>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column id="b3" width="6rem">
+                                                <Label id="b4" text="Yarn Quality" />
+                                                <table:template>
+                                                    <Input id="b5" editable="false" maxLength="8" value="{oTableDataModel2>YarnQuality}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b6" width="11rem">
+                                                <Label id="b7" text="Yarn Descrption" />
+                                                <table:template>
+                                                    <Input id="b8" editable="false" value="{oTableDataModel2>YarnDescrption}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b9" width="6rem">
+                                                <Label id="b10" text="Resultant Cout" />
+                                                <table:template>
+                                                    <Input id="b11" editable="{oGenericModel>/setEditable}" submit="onformulaweft" value="{oTableDataModel2>ResultantCout}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b12" width="6rem">
+                                                <Label id="b13" text="Picks Per Repeat"/>
+                                                <table:template>
+                                                    <Input id="b14" editable="false" value="{oTableDataModel2>PicksPerRepeat}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b15" width="6rem">
+                                                <Label id="b16" text="Wt. per Meter"/>
+                                                <table:template>
+                                                    <Input id="b17" editable="false" value="{oTableDataModel2>WtperMeter}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b18" width="6rem">
+                                                <Label id="b19" text="Repeat/Multiplier"/>
+                                                <table:template>
+                                                    <Input id="b20" editable="false" value="{oTableDataModel2>RepeatMultiplier}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b21" width="2rem">
+                                                <Label id="b22" text="1"/>
+                                                <table:template>
+                                                    <Input id="b23" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p1}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b24" width="2rem">
+                                                <Label id="b25" text="2"/>
+                                                <table:template>
+                                                    <Input id="b26" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p2}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b28" width="2rem">
+                                                <Label id="b29" text="3"/>
+                                                <table:template>
+                                                    <Input id="b30" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p3}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b31" width="2rem">
+                                                <Label id="b32" text="4"/>
+                                                <table:template>
+                                                    <Input id="b33" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p4}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b34" width="2rem">
+                                                <Label id="b35" text="5"/>
+                                                <table:template>
+                                                    <Input id="b36" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p5}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b37" width="2rem">
+                                                <Label id="b38" text="6"/>
+                                                <table:template>
+                                                    <Input id="b39" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p6}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b40" width="2rem">
+                                                <Label id="b41" text="7"/>
+                                                <table:template>
+                                                    <Input id="b42" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p7}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b43" width="2rem">
+                                                <Label id="b44" text="8"/>
+                                                <table:template>
+                                                    <Input id="b45" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p8}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b46" width="2rem">
+                                                <Label id="b47" text="9"/>
+                                                <table:template>
+                                                    <Input id="b48" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p9}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b49" width="3rem">
+                                                <Label id="b50" text="10"/>
+                                                <table:template>
+                                                    <Input id="b51" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p10}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b52" width="3rem">
+                                                <Label id="b53" text="11"/>
+                                                <table:template>
+                                                    <Input id="b54" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p11}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b55" width="3rem">
+                                                <Label id="b56" text="12"/>
+                                                <table:template>
+                                                    <Input id="b57" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p12}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b58" width="3rem">
+                                                <Label id="b60" text="13"/>
+                                                <table:template>
+                                                    <Input id="b59" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p13}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b61" width="3rem">
+                                                <Label id="b62" text="14"/>
+                                                <table:template>
+                                                    <Input id="b63" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p14}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b64" width="3rem">
+                                                <Label id="b65" text="15"/>
+                                                <table:template>
+                                                    <Input id="b66" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p15}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b67" width="3rem">
+                                                <Label id="b68" text="16"/>
+                                                <table:template>
+                                                    <Input id="b69" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p16}"/>
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b70" width="3rem">
+                                                <Label id="b71" text="17"/>
+                                                <table:template>
+                                                    <Input id="b72" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p17}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b73" width="3rem">
+                                                <Label id="b74" text="18"/>
+                                                <table:template>
+                                                    <Input id="b75" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p18}"/>
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b76" width="3rem">
+                                                <Label id="b77" text="19"/>
+                                                <table:template>
+                                                    <Input id="b78" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p19}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="b79" width="3rem">
+                                                <Label id="b80" text="20"/>
+                                                <table:template>
+                                                    <Input id="b81" editable="{oGenericModel>/setEditable}" submit="onformulaweft" maxLength="2" value="{oTableDataModel2>p20}" />
+                                                </table:template>
+                                            </table:Column>
+                                        </table:columns>
+                                    </table:Table>
+                                </f:content>
+                            </f:SimpleForm>
+                        </IconTabFilter>
+
+                        <IconTabFilter id="iddrag" key="4" text="Draft Peg plan">
+                            <f:SimpleForm id="form8" layout="ResponsiveGridLayout" editable="true">
+                                <f:content>
+                                    <core:Title id="c1" text="Draft" />
+                                    <table:Table id="idtabledraft" rowHeight="20px" rows="{oTableDataModel3>/aTableData3}" selectionBehavior="RowSelector" >
+                                        <table:extension>
+                                            <OverflowToolbar id="iddraftt" style="Clear">
+                                                <Button id="draft" text="Copy Draft pattern" icon="sap-icon://copy" press="onOpenDialog2" ></Button>
+                                                <ToolbarSpacer id="drafttool" />
+                                                <Button id="idDeldraft" icon="sap-icon://delete" visible="{oGenericModel>/setEditable}" tooltip="Delete Table records" press="ondrafttableDelete"/>
+                                                <Button id="idadddraft" icon="sap-icon://add" visible="{oGenericModel>/setEditable}" tooltip="Add Row Table records" press="adddragData"/>
+                                            </OverflowToolbar>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column id="c2" width="11rem">
+                                                <Label id="c3" text="Description" />
+                                                <table:template>
+                                                    <Input id="c4" editable="{oGenericModel>/setEditable}" maxLength="40" value="{oTableDataModel3>Description}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="c5" width="8rem">
+                                                <Label id="c6" text="Repeats" />
+                                                <table:template>
+                                                    <Input id="c7" editable="{oGenericModel>/setEditable}" maxLength="2" value="{oTableDataModel3>Repeats}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="c8" width="8rem">
+                                                <Label id="c9" text="Multiplier" />
+                                                <table:template>
+                                                    <Input id="c10" editable="{oGenericModel>/setEditable}" maxLength="5" value="{oTableDataModel3>Multiplier}" />
+                                                </table:template>
+                                            </table:Column>
+                                        </table:columns>
+                                    </table:Table>
+                                    <core:Title id="peg1" text="Peg" />
+                                    <table:Table id="idtablepeg" rowHeight="20px" rows="{oTableDataModel4>/aTableData4}" selectionBehavior="RowSelector" >
+                                        <table:extension>
+                                            <Button id="peg" text="Copy Peg pattern" icon="sap-icon://copy" press="onOpenDialog3" ></Button>
+                                            <OverflowToolbar id="idpeg" style="Clear">
+                                                <ToolbarSpacer id="pegtool" />
+                                                <Button id="idDelpeg" icon="sap-icon://delete" visible="{oGenericModel>/setEditable}" tooltip="Delete Table records" press="onpegtableDelete"/>
+                                                <Button id="idaddpeg" icon="sap-icon://add" visible="{oGenericModel>/setEditable}" tooltip="Add Row Table records" press="addpegTableData"/>
+                                            </OverflowToolbar>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column id="c11" width="11rem" >
+                                                <Label id="c12" text="Description"  />
+                                                <table:template>
+                                                    <Input id="c13" editable="{oGenericModel>/setEditable}" maxLength="40" value="{oTableDataModel4>Description}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="c14" width="8rem">
+                                                <Label id="c15" text="Repeats" />
+                                                <table:template>
+                                                    <Input id="c16" editable="{oGenericModel>/setEditable}" maxLength="2" value="{oTableDataModel4>Repeats}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="c17" width="8rem">
+                                                <Label id="c18" text="Multiplier" />
+                                                <table:template>
+                                                    <Input id="c19" editable="{oGenericModel>/setEditable}" maxLength="5" value="{oTableDataModel4>Multiplier}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="c20" width="8rem">
+                                                <Label id="c21" text="Remarks" />
+                                                <table:template>
+                                                    <Input id="c22" editable="{oGenericModel>/setEditable}" maxLength="20" value="{oTableDataModel4>Remarks}" />
+                                                </table:template>
+                                            </table:Column>
+                                        </table:columns>
+                                    </table:Table>
+                                </f:content>
+                            </f:SimpleForm>
+                        </IconTabFilter>
+
+                        <IconTabFilter id="idSelvedge" key="5" text="Selvedge">
+                            <f:SimpleForm id="f5" layout="ResponsiveGridLayout" editable="true">
+                                <f:content> 
+                                    <table:Table id="idtableselv" rowHeight="20px" rows="{oTableDataModel5>/aTableData5}" selectionBehavior="RowSelector" >
+                                        <table:extension>
+                                            <OverflowToolbar id="idselve" style="Clear">
+                                                <!-- <Button id="selvbutt" icon="sap-icon://add" visible="{oGenericModel>/setchangeditable}" type="Emphasized" text="AddSelvedgematching" tooltip="Add Row Table records" press="addTselvedgeableData"/> -->
+                                                <ToolbarSpacer id="selvtool" />
+                                                <Label id="idl3" text=" Yarn Quality" visible="{oGenericModel>/setEditable}" required="true" />
+                                                <ComboBox items="{path : '/YARN_DES',length : '100000'}"  showSecondaryValues="true"  id="idDel3" visible="{oGenericModel>/setEditable}" editable="{oGenericModel>/setEditable}">
+                                                  <items>
+                                                     <core:ListItem id="d1" text="{Product}" key="{Product}" additionalText="{ProductDescription}" />
+                                                  </items>
+                                                </ComboBox>
+                                                <!-- <Input id="idDel3" editable="{oGenericModel>/setchangeditable}" maxLength="30" width="150px" required="true" /> -->
+                                                <Button id="d2" text="Add" icon="sap-icon://add" press="addselevData" visible="{oGenericModel>/setEditable}"  />
+                                                <Button id="idDelselev" icon="sap-icon://delete" visible="{oGenericModel>/setEditable}" tooltip="Delete Table records" press="onselvedgetableDelete"/>
+                                            </OverflowToolbar>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column id="d3" width="8rem">
+                                                <Label id="d4" text="Yarn Quality" />
+                                                <table:template>
+                                                    <Input id="d5" editable="false" value="{oTableDataModel5>YarnQuality}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d6" width="11rem">
+                                                <Label id="d7" text="Yarn Desc." />
+                                                <table:template>
+                                                    <Input id="d8" editable="false" value="{oTableDataModel5>YarnDesc}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d9" width="8rem">
+                                                <Label id="d10" text="Resultant Count" />
+                                                <table:template>
+                                                    <Input id="d11" editable="true" submit="onslevedge"   value="{oTableDataModel5>ResultantCount}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d12" width="8rem">
+                                                <Label id="d13" text="Selvedge Weave" />
+                                                <table:template>
+                                                    <Input id="d14" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="10" value="{oTableDataModel5>SelvedgeWeave}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <!-- <table:Column width="8rem">
+                                                <Label text="Dent1" />
+                                                <table:template>
+                                                    <Input editable="{oGenericModel>/setEditable}" submit="onslevedge"  maxLength="10" value="{oTableDataModel5>Dent1}" />
+                                                </table:template>
+                                            </table:Column> -->
+                                            <table:Column id="d15" width="4rem">
+                                                <Label id="d16" text="Dent" />
+                                                <table:template>
+                                                    <Input id="d17" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="10" value="{oTableDataModel5>Dent}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d18" width="4rem">
+                                                <Label id="d19" text="Ends" />
+                                                <table:template>
+                                                    <Input id="d20" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="3" value="{oTableDataModel5>Ends}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d21" width="4rem">
+                                                <Label id="d22" text="Repeats" />
+                                                <table:template>
+                                                    <Input id="d23" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="2" value="{oTableDataModel5>Repeats}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d24" width="4rem">
+                                                <Label id="d25" text="Multiplier" />
+                                                <table:template>
+                                                    <Input id="d26" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="3" value="{oTableDataModel5>Multiplier}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d27" width="7rem">
+                                                <Label id="d28" text="Total Ends" />
+                                                <table:template>
+                                                    <Input id="d29" editable="{selvedge>/totends}" submit="onslevedge" maxLength="10" value="{oTableDataModel5>TotalEnds}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d30" width="8rem">
+                                                <Label id="d31" text="Wt. Per Meter" />
+                                                <table:template>
+                                                    <Input id="d32" editable="false" value="{oTableDataModel5>WtPerMeter}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d33" width="8rem">
+                                                <Label id="d34" text="Description" />
+                                                <table:template>
+                                                    <Input id="d35" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="20" value="{oTableDataModel5>Description}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="d36" width="8rem">
+                                                <Label id="d37" text="Shades" />
+                                                <table:template>
+                                                    <Input id="d38" editable="{oGenericModel>/setEditable}" submit="onselveformula"  maxLength="10" value="{oTableDataModel5>Shades}" />
+                                                </table:template>
+                                            </table:Column>
+
+                                        </table:columns>
+                                    </table:Table>
+                                </f:content>
+                            </f:SimpleForm>
+                        </IconTabFilter>
+                        
+                        <IconTabFilter id="idweavingrema" key="9" text="Weaving Remarks">
+                            <f:SimpleForm  id="f9" title="Weaving Remarks" editable="true"
+                                    labelMinWidth = "192" layout="ResponsiveGridLayout" class="sapUiTinyMarginBottom">
+                                <f:content>
+                                    <TextArea value="{oHeaderPayload>/weavingreamrk}" id="idTextweaving" height="100%" width="100%" rows="20" editable="{oGenericModel>/setEditable}" />
+                                </f:content>
+                            </f:SimpleForm>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+        </content>
+        <footer>
+            <Bar id="bar" >
+                <contentRight>
+                    <Button  id="btn" visible="{oGenericModel>/setEditable}" icon="sap-icon://save" text="Save" type="Emphasized" press="onsave" />
+                    <!-- <Button icon="sap-icon://save" text="Save" type="Emphasized" press="monogramsave" /> -->
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,83 @@
+<mvc:View controllerName="zmastercard.zmastercard.controller.masterdata"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:table="sap.ui.table">
+    <Page id="page" title="PP Master Data">
+             <content>
+                      <f:SimpleForm id="form" layout="ResponsiveGridLayout" editable="true">
+                                <f:content>
+                                    <table:Table id="idtable" rowHeight="20px" rows="{oTableDataModel1>/aTableData1}" selectionBehavior="RowSelector">
+                                        <table:extension>
+                                            <OverflowToolbar id="warppatern" style="Clear">
+                                                <ToolbarSpacer id="idwarppatern" />
+                                                <Button id="bt1" text="Add" tooltip="Add Table records"  icon="sap-icon://add" press="addrow"  />
+                                                <Button  id="bt2" icon="sap-icon://delete" tooltip="Delete Table records" press="onwarptableDelete"/>
+                                                
+                                            </OverflowToolbar>
+                                        </table:extension>
+                                        <table:columns>
+                                            <table:Column id="a1" width="9rem">
+                                                <Label id="a2" text="Master Card No" />
+                                                <table:template>
+                                                    <Input id="a3" editable="true"  value="{oTableDataModel1>Zpno}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a4" width="9rem">
+                                                <Label id="a5" text="Dyeing Sort" />
+                                                <table:template>
+                                                    <Input id="a6" editable="true" value="{oTableDataModel1>DyeSort}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a7" width="9rem">
+                                                <Label id="a8" text="Quality Code" />
+                                                <table:template>
+                                                    <Input id="a9" editable="true" value="{oTableDataModel1>Zpqlycode}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a10" width="9rem">
+                                                <Label id="a11" text="Patern"/>
+                                                <table:template>
+                                                    <Input id="a12" editable="true" value="{oTableDataModel1>Pattern}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a13" width="9rem">
+                                                <Label id="a14" text="Group"/>
+                                                <table:template>
+                                                    <Input id="a15" editable="true" value="{oTableDataModel1>Grp}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a16" width="9rem">
+                                                <Label id="a17" text="Pm Type"/>
+                                                <table:template>
+                                                    <Input id="a18" editable="true" value="{oTableDataModel1>Zpmtype}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a19" width="9rem">
+                                                <Label id="a20" text="Quality Code"/>
+                                                <table:template>
+                                                    <Input id="a21" editable="true"  value="{oTableDataModel1>Zpmyqlty}" />
+                                                </table:template>
+                                            </table:Column>
+                                            <table:Column id="a22" width="9rem">
+                                                <Label id="a23" text="Warp Per Meter"/>
+                                                <table:template>
+                                                    <Input id="a24" editable="true" value="{oTableDataModel1>Wpmtr}" />
+                                                </table:template>
+                                            </table:Column>
+                                        </table:columns>
+                                    </table:Table>
+                                </f:content>
+                            </f:SimpleForm>
+               
+        </content>
+        <footer>
+            <Bar id="bar">
+                <contentRight>
+                    <Button id="bte2" icon="sap-icon://save" press="savedata" type="Emphasized" text="Save" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>
